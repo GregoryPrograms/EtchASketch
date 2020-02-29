@@ -1,20 +1,22 @@
-const GRID_DIM = 16; //Dimensions of the grid
 const sketchboard = document.createElement('div');
+sketchboard.style.margin="auto";
 sketchboard.style.height="576px";
 sketchboard.style.width="576px";
 sketchboard.style.border = "solid #0000FF";
-createGrid();
+sketchboard.style.backgroundColor = "#B0B0B0";
+createGrid(16);  //Creates a 16x16 grid
+document.body.style.backgroundImage = "url(Assets/redPlasticBackground.jpg)";
 document.body.appendChild(sketchboard);
 
 //Creates all elements on sketchboard, assigns them 'grid' class.
-function createGrid(){
-    for(var gridColIndex = 0; gridColIndex < GRID_DIM; gridColIndex++){
+function createGrid(gridDim){
+    for(var gridColIndex = 0; gridColIndex < gridDim; gridColIndex++){
         var sketchCol = document.createElement('div');
         sketchCol.style.cssFloat = "left";
-        for(var gridRowIndex = 0; gridRowIndex < GRID_DIM; gridRowIndex++){
+        for(var gridRowIndex = 0; gridRowIndex < gridDim; gridRowIndex++){
             var gridBlock = document.createElement('div');
-            gridBlock.style.height=(576 / GRID_DIM) + "px";
-            gridBlock.style.width=(576 / GRID_DIM) + "px";
+            gridBlock.style.height=(576 / gridDim) + "px";
+            gridBlock.style.width=(576 / gridDim) + "px";
             gridBlock.addEventListener("mouseover", function (e) {
                 e.target.style.background = 'blue';
             });  
@@ -34,6 +36,7 @@ clearBoard.onclick = function(){
     //    gridBlock.style.background = 'white';
     //})
     sketchboard.textContent = '';
-    createGrid();
+    var grid_dim = prompt("Input your chosen grid dimensions" , "16");
+    createGrid(grid_dim);
 }
 document.body.appendChild(clearBoard);
