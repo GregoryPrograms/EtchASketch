@@ -1,12 +1,15 @@
+const paintColor = "#A52A2A";
+const SKETCHSIZE = "576px";
+const STARTDIM = 16;
+
 const sketchboard = document.createElement('div');
-sketchboard.style.margin="auto";
-sketchboard.style.height="576px";
-sketchboard.style.width="576px";
-sketchboard.style.border = "solid #0000FF";
-sketchboard.style.backgroundColor = "#B0B0B0";
-createGrid(16);  //Creates a 16x16 grid
+sketchboard.style.cssText="margin:auto;height:" + SKETCHSIZE + ";width:"
+                          + SKETCHSIZE + ";border:solid #D2691E;background-color:#B0B0B0;";
+createGrid(STARTDIM);  //Creates a 16x16 grid
 document.body.style.backgroundImage = "url(Assets/redPlasticBackground.jpg)";
 document.body.appendChild(sketchboard);
+
+var palette = document.createElement('div');
 
 //Creates all elements on sketchboard, assigns them 'grid' class.
 function createGrid(gridDim){
@@ -18,7 +21,7 @@ function createGrid(gridDim){
             gridBlock.style.height=(576 / gridDim) + "px";
             gridBlock.style.width=(576 / gridDim) + "px";
             gridBlock.addEventListener("mouseover", function (e) {
-                e.target.style.background = 'blue';
+                e.target.style.background = paintColor;
             });  
             sketchCol.appendChild(gridBlock);
         }
@@ -36,7 +39,7 @@ clearBoard.onclick = function(){
     //    gridBlock.style.background = 'white';
     //})
     sketchboard.textContent = '';
-    var grid_dim = prompt("Input your chosen grid dimensions" , "16");
+    var grid_dim = prompt("Input your chosen grid dimensions" , STARTDIM);
     createGrid(grid_dim);
 }
 document.body.appendChild(clearBoard);
